@@ -19,6 +19,7 @@ column orderings, and that you got every table in the schema."(from google group
 1. The CSVWRITE function for H2 had a few mistmatches with MYSQL. My attempt to fix all the issues<br>
 is done in the CSV Cleaner portion of each table dump. Change $debug to > 2 in the script to see issues found
 2. There may also be issues with the user running this migration and the user that the gerrit server is running under.<br> I was able to make this work running as a different user than the owner of the gerrit server.
+3. This was tested on gerrit 2.8.6.1, it is possible tables have changed in older/newer versions.<br> Modify h2TablesToMigrate, h2TablesToMigrate, and mysqlTablesToUpdate accordingly in the script. Better support could be to pull in config files.
 
 ##### Step 1: Download/Install/Update Database (mysql or mariadb) #####
 
@@ -65,7 +66,8 @@ my %config = (
                 {
                     "host" => "<hostname for mysql>",
                     "config" => "<path to config file default my.cnf>",
-                    "port" => "<mysql port>"
+                    "port" => "<mysql port>",
+                    "password" => "<password>"
                 },
                 "general" =>
                 {
@@ -110,8 +112,11 @@ Example with the current settings:
 ^column1b^@#!!#@^column2b^@#!!#@^column3b^#%#
 ```
 
-If there are issues remember to use gerrit_init.sql to reload the base reviewdb state, and most likely this is due<br>
+If there are issues remember to use gerrit_init.sql to reload the base reviewdb state, <br>and most likely this is due
 to the csv format not being parsed correctly.
+```
+mysql -u root -p -h <hostname> --port=<port> reviewdb < gerrit_init.sql
+```
 
 ##### Step 7: Update permanent gerrit server's gerrit.config and secure.config #####
 
