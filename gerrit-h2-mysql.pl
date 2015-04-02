@@ -4,6 +4,7 @@ use Data::Dumper;
 # Limit output displayed otherwise flip to 1
 my $debug = 2;
 
+# Config options to set
 my %config = (
                 "gerrit" =>
                 {
