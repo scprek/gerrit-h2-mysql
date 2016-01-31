@@ -1,3 +1,9 @@
+Simply use importer plugin. It works for different databases.
+
+https://gerrit.googlesource.com/plugins/importer/
+
+[Deprecated]
+
 # gerrit-h2-mysql #
 Tutorial and tool to help those migrating a gerrit instance with an embedded H2 database to one with mysql (mariadb as well)<br>
 I kept this very basic to limit the amount of packages and libraries need to run the perl script
