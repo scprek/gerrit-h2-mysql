@@ -1,5 +1,6 @@
 Simply use importer plugin. It works for different databases.
 
+https://gerrit-review.googlesource.com/Documentation/config-plugins.html#importer
 https://gerrit.googlesource.com/plugins/importer/
 
 [Deprecated]
